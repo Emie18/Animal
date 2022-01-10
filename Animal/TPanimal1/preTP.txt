@@ -1,0 +1,76 @@
+     Animals vache;
+    Animals *lapin = nullptr;
+    lapin = new Animals;
+    //tab fixe
+    Animals poussins[3];
+    //tab ptr fixe
+    Animals *poules[3];
+    //tab ptr dynamique
+    Animals **paon = nullptr;
+    paon = new Animals *[3];
+    paon[0] = new Animals;
+    paon[0]->setEnergie(80);
+    std::cout << "paon :";
+    paon[0]->affiche();
+    int val = 3;
+    std::cout << "-----------------------------------------------------------"
+              << "\n\n";
+    for (auto &obj : poules)
+    {
+        obj = new Animals;
+        val += 2;
+        obj->setX(val);
+        val += 8;
+        obj->setY(val);
+        val = val * 2;
+        obj->setEnergie(val);
+    }
+    for (auto obj : poules)
+    {
+        std::cout << "poules: ";
+        obj->affiche();
+    }
+
+    poussins[0].setX(50);
+    poussins[2].setEnergie(10);
+    std::cout << "-----------------------------------------------------------"
+              << "\n\n";
+    for (auto &element : poussins)
+    {
+        std::cout << "poussins: ";
+        element.affiche();
+    }
+    std::cout << "-----------------------------------------------------------"
+              << "\n\n";
+    std::cout << "lapin: ";
+    lapin->setY(7);
+    lapin->affiche();
+    std::cout << "-----------------------------------------------------------"
+              << "\n\n";
+    std::cout << "vache : ";
+    vache.setX(4);
+    vache.affiche();
+    std::cout << "-----------------------------------------------------------"
+              << "\n\n";
+    int f = poules[2]->getEnergie();
+    std::cout << "valeur récup par le get energie poule 2 : " << f << "\n";
+    f = poussins[0].getX();
+    std::cout << "X du premier poussin : " << f << "\n";
+    std::cout << "-----------------------------------------------------------"
+              << "\n\n";
+    char val_lettre = Animals::getlettre();
+    std::cout << "lettre :" << val_lettre << "\n";
+    int nb_gg = Animals::getNbAnimaux();
+    std::cout << "nb animaux avec f sta :" << nb_gg << "\n";
+    bool same = Animals::samePosition(poussins[1], poussins[2]);
+    std::cout << "sont mm posi :" << same << "\n";
+    std::cout << "-----------------------------------------------------------"
+              << "\n\n";
+ 
+ 
+ delete lapin;
+    for (auto &tab : poules)
+    {
+        delete tab;
+    }
+    delete paon[0];
